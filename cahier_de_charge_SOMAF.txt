@@ -1,0 +1,120 @@
+CAHIER DE CHARGE - SOMAF (VERSION SIMPLIFIEE)
+Gestion du parc matériel
+
+1. Contexte du projet
+SOMAF est une application web de gestion du parc matériel destinée à une entreprise qui souhaite suivre, organiser et contrôler l'utilisation des équipements, véhicules et outillages internes. L'objectif est de centraliser la gestion des matériels, des emprunts et des utilisateurs dans une interface simple et accessible.
+
+2. Objectif général
+Mettre en place un système permettant de :
+- gérer le catalogue du matériel,
+- suivre les emprunts et retours,
+- suivre l'état du matériel en panne,
+- administrer les comptes utilisateurs,
+- notifier les acteurs sur les opérations importantes.
+
+3. Acteurs du système
+
+3.1 Administrateur
+- gère l'ensemble du système,
+- ajoute, modifie ou supprime du matériel,
+- valide les demandes d'emprunt,
+- gère les comptes utilisateurs et leurs statuts.
+
+3.2 Employé (ingénieur)
+- consulte le matériel disponible,
+- fait simplement une demande d'emprunt de matériel,
+- consulte ses emprunts et ses notifications.
+
+3.3 Mécanicien
+- consulte la liste des matériels en panne,
+- change l'état d'un matériel en panne en "disponible" ou "hors service".
+
+3.4 Chargé du matériel (gestionnaire du parc)
+- valide le retour de chaque matériel emprunté,
+- définit l'état du matériel au moment du retour (disponible, en panne, en maintenance, hors service).
+
+4. Fonctionnalités principales
+
+4.1 Gestion du matériel
+- ajout, modification et suppression de matériel,
+- catégorisation des équipements,
+- définition de l'état du matériel : disponible, emprunté, en panne, en maintenance, hors service,
+- association d'une photo et d'une description,
+- gestion de matricule/immatriculation.
+
+4.2 Gestion des emprunts
+- création d'une demande d'emprunt par un employé,
+- saisie de la date d'emprunt, de la date de retour prévue (facultatif), du motif et des informations du site,
+- validation ou refus de la demande par l'administrateur,
+- suivi des emprunts en cours et terminés,
+- validation du retour du matériel et définition de son état par le chargé du matériel.
+
+4.3 Gestion de l'état du matériel en panne
+- consultation par le mécanicien de la liste des matériels en panne,
+- changement de l'état du matériel par le mécanicien : "disponible" ou "hors service".
+
+4.4 Gestion des utilisateurs
+- inscription des utilisateurs par l'admin,
+- connexion sécurisée,
+- gestion des rôles : administrateur / employé,
+- gestion du poste, du département, du téléphone et du statut du compte.
+
+4.5 Notifications
+- notifications automatiques pour les demandes d'emprunt,
+- notifications pour la validation ou le refus d'un emprunt,
+- lecture des notifications par l'utilisateur concerné.
+
+4.6 Tableau de bord
+- vue d'ensemble des emprunts en cours,
+- statistiques de base sur le parc matériel.
+
+5. Règles de gestion
+- Un matériel ne peut être emprunté que s'il est disponible.
+- Une demande d'emprunt ne peut pas être faite si un emprunt actif existe déjà pour ce matériel.
+- Une date de retour prévue doit être postérieure à la date d'emprunt.
+- Les demandes d'emprunt nécessitent un motif obligatoire.
+- Les informations du site sont obligatoires pour tout prêt.
+- Seul le mécanicien peut faire passer un matériel de l'état "en panne" à "disponible" ou "hors service".
+- Seul le chargé du matériel définit l'état du matériel au moment du retour.
+
+6. Besoins fonctionnels attendus
+- Interface web responsive.
+- Authentification par email et mot de passe.
+- Sécurisation des accès selon les rôles.
+- Recherche et filtres sur la liste du matériel.
+- Affichage clair des états du matériel.
+- Historique des opérations et suivi des statuts.
+
+7. Exigences techniques
+7.1 Stack actuelle
+- PHP
+- MySQL
+- HTML/CSS/JavaScript
+- Architecture web orientée pages PHP
+
+8. Structure de données principale
+- users : utilisateurs du système
+- equipment : matériel du parc
+- Emprunts : emprunts et retours
+- notifications : messages d'information et alertes
+- postes : référentiel des postes utilisateurs
+
+9. Sécurité
+- mots de passe hachés,
+- requêtes préparées pour éviter les injections SQL,
+- contrôle d'accès basé sur les rôles,
+- validation des données côté serveur,
+- déconnexion automatique si un utilisateur est supprimé ou désactivé.
+
+
+10. Évolutions possibles
+- ajout d'un tableau de bord plus avancé,
+- génération de rapports PDF/Excel,
+- intégration d'un système de scan de QR code,
+- ajout de permissions plus fines,
+- amélioration de l'interface utilisateur,
+- mise en place d'une API REST,
+- développement d'une version plus robuste avec framework MVC.
+
+11. Résumé du besoin
+Le projet vise à fournir un outil simple, efficace et opérationnel pour gérer le parc matériel d'une structure comme SOMAF, avec un niveau de complexité adapté à un usage professionnel de base, tout en restant facilement exploitable et extensible. Cette version simplifie le circuit du matériel en panne : le mécanicien statue directement sur l'état final (disponible ou hors service), sans passer par une demande d'intervention formelle, et le chargé du matériel fixe l'état à chaque retour d'emprunt.
